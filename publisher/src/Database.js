@@ -66,9 +66,11 @@ class Database {
         if(isExist && Object.values(isExist).length < 0){
             throw new Error(`Data not found for id: ${id}`);
         }
+        //Let check if the topic was passed so we can updated the existing topic
         if(body?.topic){
             isExist.topic = body?.topic;
         }
+        //Let check if the url was passed so we can updated the existing url
         if(body?.url){
             isExist.url = body?.url;
         }
