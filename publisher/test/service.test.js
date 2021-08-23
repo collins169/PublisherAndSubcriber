@@ -3,6 +3,7 @@ const { expect } = chai;
 const request = require("supertest");
 const app = require("../app.js");
 const fs = require("fs");
+
 describe("Publisher and Subscriber Test", () => {
     
   //Let delete the test database json file
@@ -24,13 +25,13 @@ describe("Publisher and Subscriber Test", () => {
   });
 
   //Run test to publish to a topic
-  it("should publish to a topic", async () => {
+  it("should fail to publish to a topic", async () => {
     const res = await request(app)
       .post("/publish/topic1")
       .set({ "Content-Type": "application/json" })
       .send({
         message: "tetstsg",
       });
-    expect(res.status).to.equal(201);
+    expect(res.status).to.equal(404);
   });
 });
