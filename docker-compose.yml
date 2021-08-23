@@ -1,0 +1,16 @@
+version: '1.0'
+services: 
+    publisher:
+        build: ./publisher
+        command: npm start
+        ports:
+          - "5000:5000"
+        environment: 
+          NODE_ENV: production
+    subscriber:
+        build: ./subscriber
+        command: npm start
+        ports:
+          - "5001:5001"
+        environment: 
+          NODE_ENV: production
