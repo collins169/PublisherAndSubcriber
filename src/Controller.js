@@ -36,14 +36,17 @@ exports.publish = async (req, res) => {
       } catch (e) {
           //Let verify if the http status was successfully else let return and http response with the status
         if (![200, 201].includes(e?.response?.status)) {
-          return res.status(e?.response?.status).json({
-            error: `Failed to publish to ${url} status code: ${e?.response?.status}`,
+          //Let return status code from the subscribed server
+          return res.status(e?.response?.status || 500).json({
+            error: `Failed to publish to ${url} status code: ${e?.response?.status || 500}`,
           });
         }
       }
     }
+    //Since everything is fine let return 201 status code
     return res.status(201).json();
   } catch (e) {
+    //Let return Http 500 error due to the error that occurred
     return res.status(500).json({
       error: e.message,
     });
@@ -67,11 +70,13 @@ exports.subscribe = async (req, res) => {
     //Let add item to the list
     await db.create(formData);
 
+    //Since everything is fine let return 201 status code
     return res.status(201).json({
       url,
       topic,
     });
   } catch (e) {
+    //Let return Http 500 error due to the error that occurred
     return res.status(500).json({
       error: e.message,
     });

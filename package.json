@@ -1,7 +1,7 @@
 {
-  "name": "publisherandsubcriber",
+  "name": "publisherserver",
   "version": "1.0.0",
-  "description": "A simple publisher and subscriber application",
+  "description": "Publisher Server",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

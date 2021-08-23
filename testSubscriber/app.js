@@ -14,7 +14,7 @@ app.use(cors());
 
 app.use('/:param', (req, res) => {
     console.log(req.body);
-    res.status(200).json({});
+    res.status(200).json();
 });
 
 app.listen(PORT, () => {
